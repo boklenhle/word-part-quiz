@@ -1,41 +1,40 @@
-const nerveinput = document.getElementsByClassName("nerveinput");
-const nervebutton = document.getElementsByClassName("nervebutton");
+let nerveinput = document.getElementsByClassName("nerveinput");
+const nervebutton = document.getElementById("nervebutton");
 const nervediv = document.getElementById("nervediv");
 
 
-// this is broke and I dunno why
-nervelength = nerveinput.value.length;
+// IT FUCKING WOOOOOOOOORKS HEY-YO!!!!!!!!!!
+const nervelength = `${nerveinput}`.length;
 
 
+// this is working properly sans the clearing
+showCorrect = () => {
+    h4 = document.createElement("h4");
+    nervediv.appendChild(h4.appendChild(document.createTextNode("Correct! :D")));
+    nerveinput.value = ``;
+}
+
+// this is working properly sans the clearing
+showIncorrect = () => {
+    h4 = document.createElement("h4");
+    nervediv.appendChild(h4.appendChild(document.createTextNode("Incorrect! :(")));
+    nerveinput.value =``;
+}
 
 CheckNerve = () => {
-    if (nervelength > 0 && nerveinput === `neuro` || nerveinput === `neuro-`) {
-        showCorrect();
-    } else 
-    if (nervelength > 0) {
+
+    //this is not working - should be showcorrect
+    if (nervelength > 0 && `${nerveinput}` === `neuro` || nervelength > 0 && `${nerveinput}` === `neuro-`) {
+        console.log(yes);
+    } 
+    //this is working (too well - it skips past the first part)
+    else {
         showIncorrect();
-    } else {
-        // this is working correctly
-        alert("Please enter an answer.")
     }
+if (nervelength === 0) {
+    // this not working now? - print showincorrect no matter what
+    alert("Please enter an answer.")
 }
-
-
-
-// this is working properly
-showCorrect = () => {
-    h4 = document.createElement("h4")
-    nervediv.appendChild(h4.appendChild(document.createTextNode("Correct! :D")))
 }
-
-// this is working properly
-showIncorrect = () => {
-    h4 = document.createElement("h4")
-    nervediv.appendChild(h4.appendChild(document.createTextNode("Incorrect! :(")))
-}
-
-
-
-// this is NOT WORKING. 
-// It's not waiting for the click it's executing right on load in (if the function has () otherwise, it doesn't do anythin)
-nervebutton.addEventListener("click", );
+// this is working finally.
+nervebutton.addEventListener("click", CheckNerve);
